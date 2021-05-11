@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  website:
+    container_name: website
+    image: 'php:apache'
+    depends_on:
+      - student-api
+    ports:
+      - "50:80"
+    environment:
+      - USERNAME=toto
+      - PASSWORD=python
+    volumes:
+      - ./website:/var/www/html
+  student-api:
+    image: student-api:v1
+    container_name: student-api
+
