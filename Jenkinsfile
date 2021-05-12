@@ -12,7 +12,7 @@ pipeline {
              agent any
              steps {
                 script {
-                  sh 'docker build -t $IMAGE_REPO:$IMAGE_TAG -f ./simple_api/Dockerfile . '
+                  sh 'cd simple_api && docker build -t $IMAGE_NAME:$IMAGE_TAG .'
                 }
              }
         }
