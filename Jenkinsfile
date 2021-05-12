@@ -58,7 +58,7 @@ pipeline {
                script {
                    sh '''
 		   docker login --username ${DOCKERHUB_LOGIN_USR} --password ${DOCKERHUB_LOGIN_PSW}
-                   docker push ${IMAGE_REPO}/student-list/${IMAGE_NAME}:${IMAGE_TAG}
+                   docker push ${IMAGE_REPO}/${IMAGE_NAME}:${IMAGE_TAG}
                    '''
                }
            }
