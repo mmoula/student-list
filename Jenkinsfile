@@ -32,7 +32,7 @@ pipeline {
            steps {
               script {
                 sh '''
-                    curl http://172.17.0.1:50 | grep -q "student"
+                    curl http://172.17.0.1:80 | grep -q "error"
                 '''
               }
            }
