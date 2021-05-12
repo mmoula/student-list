@@ -1,10 +1,10 @@
 pipeline {
      environment {
        IMAGE_NAME = "student-api"
-       IMAGE_TAG = "latest"
-       STAGING = "joris-staging"
-       PRODUCTION = "joris-production"
-       IMAGE_REPO = "joriscommin"
+       IMAGE_TAG = "v1"
+       STAGING = "marwa-staging"
+       PRODUCTION = "marwa-production"
+       IMAGE_REPO = "mmoula"
      }
      agent none
      stages {
