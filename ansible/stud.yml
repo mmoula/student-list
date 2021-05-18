@@ -1,0 +1,38 @@
+---
+- name: "student container"
+  become: yes
+  hosts: prod
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+    - name: Removing a file
+      file:
+        path: /home/centos/web
+        state: absent
+
+    - name: Create Folder
+      file:
+        path: /home/centos/web
+        state: directory
+    - name: "Copy index.php"
+      copy:
+        src: /home/centos/student-list/website/index.php
+        dest: /home/centos/web/
+
+    - name: Create  containers
+      docker_container:
+        name: "website"
+        image: "php:apache"
+        ports: 50:80
+        env:
+          USERNAME=toto
+          PASSWORD=python
+        volumes:
+          - ./web:/var/www/html
+
+    - name: Create  containers
+      docker_container:
+        name: "api"
+        image: "192.168.31.131:5000/student-api"
+        ports: 80:5000
+

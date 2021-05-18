@@ -1,0 +1,25 @@
+
+---
+- name: "student container"
+  become: yes
+  hosts: prod
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+    - name: Create  containers
+      docker_container:
+        name: "student-api"
+        image: "192.168.31.131:5000/student-api"
+        ports: 80:5000
+
+    - name: Create  containers
+      docker_container:
+        name: "website"
+        image: "php:apache"
+        ports: 50:80
+        env:
+          USERNAME=toto
+          PASSWORD=python
+        volumes:
+          - "${PWD}/website:/var/www/html"
+
