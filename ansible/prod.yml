@@ -1,6 +1,6 @@
 ---
 prod:
   hosts:
-    client
+    client: 192.168.31.132
 ...
 
