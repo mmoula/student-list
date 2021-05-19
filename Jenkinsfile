@@ -45,16 +45,17 @@ pipeline {
              }
           }
      }
-        stage('deploy with ansible') {
-            agent { docker { image 'dirane/docker-ansible:latest' } }
-            steps {
-                script {
+     stage('deploy with ansible') {
+         agent { docker { image 'dirane/docker-ansible:latest' } }
+         steps {
+            script {
                     
-                    sh '''
-			cd ansible
-                        ansible-playbook -i prod.yml install-docker.yml
-			ansible-playbook -i prod.yml student.yml
-			'''
+               sh '''
+	          cd ansible
+                  ansible-playbook -i prod.yml install-docker.yml
+                  ansible-playbook -i prod.yml student.yml
+		
+                 '''
                 }
             }
         }
