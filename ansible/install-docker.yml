@@ -20,6 +20,9 @@
     yum: name=docker state=latest
 
   - name: Start and enable the Docker daemon
-    service: name=docker state=started enabled=yes
+    service:
+    name:docker 
+    state:started
+    enabled:yes
 ...
 
