@@ -46,7 +46,7 @@ pipeline {
           }
      }
         stage('deploy with ansible') {
-            agent { docker { image 'dirane/docker-ansible:latest' } }
+            agent any
             steps {
                 script {
                     
