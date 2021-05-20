@@ -59,6 +59,19 @@ pipeline {
                 }
             }
         }
+         stage('test the deployment') {
+            agent { docker { image 'dirane/docker-ansible:latest' } }
+            steps {
+                script {
+
+                    sh '''
+                        cd ansible
+                        ansible-playbook -i prod.yml test.yml
+                        '''
+                }
+            }
+        }
 
     }
 }
+        

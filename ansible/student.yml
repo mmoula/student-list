@@ -7,7 +7,7 @@
   tasks:
     - name: "Copy text in daemon.json"
       copy:
-        content: { 'insecure-registries' :['192.168.31.131:5000'] }
+        content: { 'insecure-registries' :['192.168.31.131:6000'] }
         dest: /etc/docker/daemon.json
     
     - name: Start and enable the Docker daemon
