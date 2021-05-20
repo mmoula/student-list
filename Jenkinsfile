@@ -53,7 +53,7 @@ pipeline {
                sh '''
 	          cd ansible
                   ansible-playbook -i prod.yml install-docker.yml
-                  ansible-playbook -i prod.yml student.yml
+                  ansible-playbook -i prod.yml student-list.yml
 		
                    '''
                 }
