@@ -31,7 +31,7 @@
         state: directory
     - name: "Copy index.php"
       copy:
-        src: /home/centos/student-list/website/index.php
+        src: website/index.php
         dest: ./web/
   
     - name: Create  containers
