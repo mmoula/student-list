@@ -5,6 +5,12 @@
   vars:
     ansible_python_interpreter: /usr/bin/python3
   tasks:
+
+    - name: Removing a file
+      file:
+        path: ./student-list
+        state: absent
+
     - name: Read-write git checkout from github
       ansible.builtin.git:
         repo: "https://github.com/joriscommin/student-list.git"
@@ -12,33 +18,22 @@
 
     - name: "Copy text in daemon.json"
       copy:
-        content: { 'insecure-registries' :['192.168.31.131:6000'] }
+        content: { 'insecure-registries' :['192.168.31.131:5000'] }
         dest: /etc/docker/daemon.json
-    
+
     - name: Start and enable the Docker daemon
-      service: name=docker state=started enabled=yes
+      service:
+        name: docker 
+        state: started 
+        enabled: yes
 
 
     - name: Create  containers
       docker_container:
         name: "student-api"
-        image: "192.168.31.131:6000/student-api"        
+        image: "192.168.31.131:5000/student-api"
         ports: 80:5000
- 
-    - name: Removing a file
-      file:
-        path: ./web
-        state: absent  
 
-    - name: Create Folder
-      file:
-        path: ./web
-        state: directory
-    - name: "Copy index.php"
-      copy:
-        src: website/index.php
-        dest: ./web/
-  
     - name: Create  containers
       docker_container:
         name: "website"
@@ -48,7 +43,7 @@
           USERNAME=toto
           PASSWORD=python
         volumes:
-          - ./web:/var/www/html
+          - ./student-list/website:/var/www/html
     - name: Add a container to a network, leaving existing containers connected
       docker_network:
         name: network_one
@@ -58,3 +53,4 @@
         appends: yes
 
 ...
+
